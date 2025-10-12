@@ -178,7 +178,7 @@ class Files {
   }
 
   /// function file view
-  static viewFile({
+  static void viewFile({
     required FileData fileData,
     Function(FileData fileData)? onView,
   }) {
@@ -206,7 +206,7 @@ class Files {
   }
 
   /// function file deletion
-  static deleteFile({
+  static Future<void> deleteFile({
     required FileData fileData,
     required Function(FileData fileData) onDeleted,
   }) async {
@@ -220,7 +220,7 @@ class Files {
   }
 
   /// function file picker options
-  static filePickerOptions({
+  static Future<void> filePickerOptions({
     required BuildContext context,
     required FileData fileData,
     required FileMode fileMode,
@@ -286,7 +286,7 @@ class Files {
   }
 
   /// function camera picker for take picture and save to temporary cache directory
-  static cameraPicker({
+  static Future<void> cameraPicker({
     required FileData fileData,
     required Function(FileData fileData) onSelected,
     Function(String message, int messageCode)? onCancel,
@@ -354,7 +354,7 @@ class Files {
   }
 
   /// function image picker for pick image from gallery and save to temporary cache directory
-  static imagePicker({
+  static Future<void> imagePicker({
     required FileData fileData,
     required Function(FileData fileData) onSelected,
     Function(String message, int messageCode)? onCancel,
@@ -422,7 +422,7 @@ class Files {
   }
 
   /// function file picker for pick any file and save to temporary cache directory
-  static filePicker({
+  static Future<void> filePicker({
     required FileData fileData,
     required Function(FileData fileData) onSelected,
     Function(String message, int messageCode)? onCancel,

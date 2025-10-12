@@ -344,7 +344,7 @@ class _FilePickerState extends State<FilePicker> {
   }
 }
 
-_assetImage(String path, {double? width, double? height}) {
+Widget _assetImage(String path, {double? width, double? height}) {
   return Image.asset(
     path,
     width: width,

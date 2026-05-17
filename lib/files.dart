@@ -433,7 +433,7 @@ class Files {
         allowedExtensions
             ?.map((e) => Files.getFileExtension(e, withDot: false))
             .toList();
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+    FilePickerResult? result = await FilePicker.pickFiles(
       type:
           (allowedExtensions ?? []).isNotEmpty ? FileType.custom : FileType.any,
       allowedExtensions: extensions,

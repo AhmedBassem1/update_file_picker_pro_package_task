@@ -183,10 +183,9 @@ class Files {
     Function(FileData fileData)? onView,
   }) {
     try {
-      String path =
-          (!Files._isNullOREmpty(fileData.path))
-              ? fileData.path
-              : fileData.otherDevicePath;
+      String path = (!Files._isNullOREmpty(fileData.path))
+          ? fileData.path
+          : fileData.otherDevicePath;
       if (!Files._isNullOREmpty(path)) {
         if (onView != null) {
           onView(fileData);
@@ -236,53 +235,53 @@ class Files {
   }) async {
     fileMode == FileMode.camera
         ? await Files.cameraPicker(
-          fileData: fileData,
-          crop: crop,
-          maxFileSizeInMb: maxFileSizeInMB,
-          cropOnlySquare: cropOnlySquare,
-          cropperToolbarTitle: cropperToolbarTitle,
-          cropperToolbarColor: cropperToolbarColor,
-          cropperToolbarWidgetsColor: cropperToolbarWidgetsColor,
-          onSelected: (fileData) {
-            onSelected(fileData);
-          },
-          onCancel: (message, messageCode) {
-            if (onCancel != null) {
-              onCancel(message, messageCode);
-            }
-          },
-        )
+            fileData: fileData,
+            crop: crop,
+            maxFileSizeInMb: maxFileSizeInMB,
+            cropOnlySquare: cropOnlySquare,
+            cropperToolbarTitle: cropperToolbarTitle,
+            cropperToolbarColor: cropperToolbarColor,
+            cropperToolbarWidgetsColor: cropperToolbarWidgetsColor,
+            onSelected: (fileData) {
+              onSelected(fileData);
+            },
+            onCancel: (message, messageCode) {
+              if (onCancel != null) {
+                onCancel(message, messageCode);
+              }
+            },
+          )
         : fileMode == FileMode.gallery
         ? await Files.imagePicker(
-          fileData: fileData,
-          crop: crop,
-          maxFileSizeInMb: maxFileSizeInMB,
-          cropOnlySquare: cropOnlySquare,
-          cropperToolbarTitle: cropperToolbarTitle,
-          cropperToolbarColor: cropperToolbarColor,
-          cropperToolbarWidgetsColor: cropperToolbarWidgetsColor,
-          onSelected: (fileData) {
-            onSelected(fileData);
-          },
-          onCancel: (message, messageCode) {
-            if (onCancel != null) {
-              onCancel(message, messageCode);
-            }
-          },
-        )
+            fileData: fileData,
+            crop: crop,
+            maxFileSizeInMb: maxFileSizeInMB,
+            cropOnlySquare: cropOnlySquare,
+            cropperToolbarTitle: cropperToolbarTitle,
+            cropperToolbarColor: cropperToolbarColor,
+            cropperToolbarWidgetsColor: cropperToolbarWidgetsColor,
+            onSelected: (fileData) {
+              onSelected(fileData);
+            },
+            onCancel: (message, messageCode) {
+              if (onCancel != null) {
+                onCancel(message, messageCode);
+              }
+            },
+          )
         : await Files.filePicker(
-          fileData: fileData,
-          maxFileSizeInMb: maxFileSizeInMB,
-          allowedExtensions: allowedExtensions,
-          onSelected: (fileData) {
-            onSelected(fileData);
-          },
-          onCancel: (message, messageCode) {
-            if (onCancel != null) {
-              onCancel(message, messageCode);
-            }
-          },
-        );
+            fileData: fileData,
+            maxFileSizeInMb: maxFileSizeInMB,
+            allowedExtensions: allowedExtensions,
+            onSelected: (fileData) {
+              onSelected(fileData);
+            },
+            onCancel: (message, messageCode) {
+              if (onCancel != null) {
+                onCancel(message, messageCode);
+              }
+            },
+          );
   }
 
   /// function camera picker for take picture and save to temporary cache directory
@@ -429,13 +428,13 @@ class Files {
     int? maxFileSizeInMb,
     List<String>? allowedExtensions,
   }) async {
-    List<String>? extensions =
-        allowedExtensions
-            ?.map((e) => Files.getFileExtension(e, withDot: false))
-            .toList();
+    List<String>? extensions = allowedExtensions
+        ?.map((e) => Files.getFileExtension(e, withDot: false))
+        .toList();
     FilePickerResult? result = await FilePicker.pickFiles(
-      type:
-          (allowedExtensions ?? []).isNotEmpty ? FileType.custom : FileType.any,
+      type: (allowedExtensions ?? []).isNotEmpty
+          ? FileType.custom
+          : FileType.any,
       allowedExtensions: extensions,
     );
     if (result != null && result.files.single.path != null) {
@@ -481,28 +480,19 @@ class Files {
           toolbarTitle: cropperToolbarTitle,
           toolbarColor: cropperToolbarColor,
           toolbarWidgetColor: cropperToolbarWidgetsColor,
-          aspectRatioPresets:
-              cropOnlySquare
-                  ? [CropAspectRatioPreset.square]
-                  : [
-                    CropAspectRatioPreset.original,
-                    CropAspectRatioPreset.square,
-                  ],
-          initAspectRatio:
-              cropOnlySquare
-                  ? CropAspectRatioPreset.square
-                  : CropAspectRatioPreset.original,
+          aspectRatioPresets: cropOnlySquare
+              ? [CropAspectRatioPreset.square]
+              : [CropAspectRatioPreset.original, CropAspectRatioPreset.square],
+          initAspectRatio: cropOnlySquare
+              ? CropAspectRatioPreset.square
+              : CropAspectRatioPreset.original,
           lockAspectRatio: cropOnlySquare ? true : false,
         ),
         IOSUiSettings(
           title: cropperToolbarTitle,
-          aspectRatioPresets:
-              cropOnlySquare
-                  ? [CropAspectRatioPreset.square]
-                  : [
-                    CropAspectRatioPreset.original,
-                    CropAspectRatioPreset.square,
-                  ],
+          aspectRatioPresets: cropOnlySquare
+              ? [CropAspectRatioPreset.square]
+              : [CropAspectRatioPreset.original, CropAspectRatioPreset.square],
           aspectRatioLockEnabled: cropOnlySquare ? true : false,
         ),
       ],

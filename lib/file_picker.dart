@@ -28,6 +28,8 @@ class FilePicker extends StatefulWidget {
   final double? width;
   final double? height;
   final Widget? child;
+  final WidgetBuilder? bottomSheet;
+  final Color? backgroundColor;
 
   const FilePicker({
     super.key,
@@ -54,6 +56,7 @@ class FilePicker extends StatefulWidget {
     this.width,
     this.height,
     this.child,
+    this.bottomSheet, this.backgroundColor,
   });
 
   @override
@@ -79,8 +82,12 @@ class _FilePickerState extends State<FilePicker> {
       onTap: () async {
         FileData fileData = FileData.clone(widget.fileData);
         showModalBottomSheet(
+          backgroundColor: widget.backgroundColor,
           context: context,
           builder: (context) {
+            if (widget.bottomSheet != null) {
+              return widget.bottomSheet!(context);
+            }
             return Container(
               padding: const EdgeInsets.all(20),
               child: Column(

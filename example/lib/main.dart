@@ -76,6 +76,10 @@ class _MyAppState extends State<MyApp> {
                         Files.jpg,
                         Files.pdf,
                       ],
+                      onDeleted: (FileData fileData) {
+                        _fileData = fileData;
+                        setState(() {});
+                      },
                     ),
               ),
               ///////////////////////////////////////////////////////////////////////////////////////
@@ -98,6 +102,7 @@ class TestBottom extends StatelessWidget {
     this.allowedExtensions,
     required this.onSelected,
     this.onCancel,
+    required this.onDeleted,
   });
 
   final BuildContext pickerContext;
@@ -108,6 +113,7 @@ class TestBottom extends StatelessWidget {
 
   final ValueChanged<FileData> onSelected;
   final void Function(String message, int messageCode)? onCancel;
+  final void Function(FileData fileDate) onDeleted;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -128,9 +134,30 @@ class TestBottom extends StatelessWidget {
                 fileData: fileData,
                 fileMode: FileMode.gallery,
                 onSelected: onSelected,
+                onCancel: onCancel,
               );
             },
             child: Icon(Icons.add_a_photo, size: 44),
+          ),
+
+          SizedBox(width: 14,),
+          Visibility(
+            visible: fileData.hasFile,
+            child: GestureDetector(
+              onTap: () {
+                Files.deleteFile(
+                  fileData: fileData,
+                  onDeleted: (fileData) {
+                    onSelected(fileData);
+                  
+                      onDeleted(fileData);
+                    
+                    Navigator.pop(context);
+                  },
+                );
+              },
+              child:  Icon(Icons.delete,size: 44,),
+            ),
           ),
         ],
       ),

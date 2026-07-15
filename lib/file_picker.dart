@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:file_picker_pro/file_data.dart';
 import 'package:file_picker_pro/files.dart';
 import 'package:flutter/material.dart';
@@ -354,11 +355,12 @@ class _FilePickerState extends State<FilePicker> {
             padding: const EdgeInsets.all(10),
             color: Colors.grey,
             child: Center(
-              child: _assetImage(
-                widget.fileData!.hasFile
-                    ? _imgAttachmentAttached
-                    : _imgAttachment,
-              ),
+              child: widget.fileData!.hasFile
+                  ? Image.file(
+                      File(widget.fileData!.filePath),
+                      fit: BoxFit.cover,
+                    )
+                  : _assetImage(_imgAttachment),
             ),
           ),
     );
